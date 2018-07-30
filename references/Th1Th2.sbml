@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1" xmlns:qual="http://www.sbml.org/sbml/level3/version1/qual/version1" qual:required="true">
+	<model id="Th1Th2">
+		<listOfCompartments>
+			<compartment id="default" constant="true"/>
+		</listOfCompartments>
+		<qual:listOfQualitativeSpecies>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="TBET" qual:name="TBET" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IFNG" qual:name="IFNG" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IL2" qual:name="IL2" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IL4" qual:name="IL4" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="GATA3" qual:name="GATA3" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IFNGe" qual:name="IFNGe" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IL2e" qual:name="IL2e" qual:maxLevel="1"/>
+			<qual:qualitativeSpecies qual:compartment="default" qual:constant="false" qual:id="IL4e" qual:name="IL4e" qual:maxLevel="1"/>
+		</qual:listOfQualitativeSpecies>
+		<qual:listOfTransitions>
+			<qual:transition qual:id="tr_TBET" qual:name="Interactions targeting TBET">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="TBET" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IFNG" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL4" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="GATA3" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="TBET" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<and/>
+								<apply>
+									<or/>
+									<apply>
+										<eq/>
+										<ci>IFNG</ci>
+										<cn type="integer">1</cn>
+									</apply>
+									<apply>
+										<eq/>
+										<ci>TBET</ci>
+										<cn type="integer">1</cn>
+									</apply>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>IL4</ci>
+									<cn type="integer">0</cn>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>GATA3</ci>
+									<cn type="integer">0</cn>
+								</apply>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IFNG" qual:name="Interactions targeting IFNG">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="TBET" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IFNG" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL4" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="GATA3" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IFNGe" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IFNG" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<and/>
+								<apply>
+									<or/>
+									<apply>
+										<eq/>
+										<ci>IFNGe</ci>
+										<cn type="integer">1</cn>
+									</apply>
+									<apply>
+										<and/>
+										<apply>
+											<or/>
+											<apply>
+												<eq/>
+												<ci>IFNG</ci>
+												<cn type="integer">1</cn>
+											</apply>
+											<apply>
+												<eq/>
+												<ci>TBET</ci>
+												<cn type="integer">1</cn>
+											</apply>
+										</apply>
+										<apply>
+											<eq/>
+											<ci>GATA3</ci>
+											<cn type="integer">0</cn>
+										</apply>
+									</apply>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>IL4</ci>
+									<cn type="integer">0</cn>
+								</apply>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IL2" qual:name="Interactions targeting IL2">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="IFNG" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL2" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL2e" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IL2" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<and/>
+								<apply>
+									<or/>
+									<apply>
+										<eq/>
+										<ci>IL2e</ci>
+										<cn type="integer">1</cn>
+									</apply>
+									<apply>
+										<eq/>
+										<ci>IL2</ci>
+										<cn type="integer">1</cn>
+									</apply>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>IFNG</ci>
+									<cn type="integer">0</cn>
+								</apply>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IL4" qual:name="Interactions targeting IL4">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="TBET" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IFNG" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL2" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL4" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="GATA3" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL4e" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IL4" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<and/>
+								<apply>
+									<or/>
+									<apply>
+										<eq/>
+										<ci>IL4e</ci>
+										<cn type="integer">1</cn>
+									</apply>
+									<apply>
+										<and/>
+										<apply>
+											<eq/>
+											<ci>GATA3</ci>
+											<cn type="integer">1</cn>
+										</apply>
+										<apply>
+											<or/>
+											<apply>
+												<eq/>
+												<ci>IL2</ci>
+												<cn type="integer">1</cn>
+											</apply>
+											<apply>
+												<eq/>
+												<ci>IL4</ci>
+												<cn type="integer">1</cn>
+											</apply>
+										</apply>
+										<apply>
+											<eq/>
+											<ci>TBET</ci>
+											<cn type="integer">0</cn>
+										</apply>
+									</apply>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>IFNG</ci>
+									<cn type="integer">0</cn>
+								</apply>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_GATA3" qual:name="Interactions targeting GATA3">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="TBET" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IFNG" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL2" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="IL4" qual:transitionEffect="none"/>
+					<qual:input qual:qualitativeSpecies="GATA3" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="GATA3" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<and/>
+								<apply>
+									<or/>
+									<apply>
+										<and/>
+										<apply>
+											<eq/>
+											<ci>IL2</ci>
+											<cn type="integer">1</cn>
+										</apply>
+										<apply>
+											<eq/>
+											<ci>IL4</ci>
+											<cn type="integer">1</cn>
+										</apply>
+									</apply>
+									<apply>
+										<eq/>
+										<ci>IL4</ci>
+										<cn type="integer">1</cn>
+									</apply>
+									<apply>
+										<eq/>
+										<ci>GATA3</ci>
+										<cn type="integer">1</cn>
+									</apply>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>TBET</ci>
+									<cn type="integer">0</cn>
+								</apply>
+								<apply>
+									<eq/>
+									<ci>IFNG</ci>
+									<cn type="integer">0</cn>
+								</apply>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IFNGe" qual:name="Interactions targeting IFNGe">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="IFNGe" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IFNGe" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<eq/>
+								<ci>IFNGe</ci>
+								<cn type="integer">1</cn>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IL2e" qual:name="Interactions targeting IL2e">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="IL2e" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IL2e" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<eq/>
+								<ci>IL2e</ci>
+								<cn type="integer">1</cn>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+			<qual:transition qual:id="tr_IL4e" qual:name="Interactions targeting IL4e">
+				<qual:listOfInputs>
+					<qual:input qual:qualitativeSpecies="IL4e" qual:transitionEffect="none"/>
+				</qual:listOfInputs>
+				<qual:listOfOutputs>
+					<qual:output qual:qualitativeSpecies="IL4e" qual:transitionEffect="assignmentLevel"/>
+				</qual:listOfOutputs>
+				<qual:listOfFunctionTerms>
+					<qual:functionTerm qual:resultLevel="1">
+						<math xmlns="http://www.w3.org/1998/Math/MathML">
+							<apply>
+								<eq/>
+								<ci>IL4e</ci>
+								<cn type="integer">1</cn>
+							</apply>
+						</math>
+					</qual:functionTerm>
+					<qual:defaultTerm qual:resultLevel="0"/>
+				</qual:listOfFunctionTerms>
+			</qual:transition>
+		</qual:listOfTransitions>
+	</model>
+</sbml>
