@@ -1,7 +1,10 @@
-library(testthat) 
-library(BoolNet)
+#library(testthat) 
+#library(BoolNet)
 
-source("BoolNetPerturb_Label.R")
+#source("BoolNetPerturb_Label.R")
+
+context("BNP_Label")
+
 test_results <- test_dir(".", reporter="summary")
 
 data("cellcycle")

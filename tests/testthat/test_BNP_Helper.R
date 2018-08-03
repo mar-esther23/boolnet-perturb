@@ -1,7 +1,10 @@
-library(testthat) 
-library(BoolNet)
+#library(testthat) 
+#library(BoolNet)
 
-source("BoolNetPerturb_Helper.R")
+#source("BoolNetPerturb_Helper.R")
+
+context("BNP_Helper")
+
 test_results <- test_dir(".", reporter="summary")
 
 data("cellcycle")
