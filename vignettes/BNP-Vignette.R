@@ -81,3 +81,10 @@ perturbState(netTh17Treg, state = 0,
 cellfate <- cellFateMap(netTh17Treg, label.rules = labelsTh17Treg)
 head(cellfate)
 
+## ------------------------------------------------------------------------
+res.der <- derrida(netTh17Treg)
+plot(x=names(res.der), y=res.der, 
+     ylim = c(0,length(res.der)), 
+     xlab = "h_t", ylab = "h_t+1")
+abline(0,1)
+

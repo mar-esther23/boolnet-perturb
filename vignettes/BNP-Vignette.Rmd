@@ -68,6 +68,9 @@ data(netTh17Treg)
 netTh17Treg
 ```
 
+The function `getNetTopology()` can be used to obtain the topology of the network with interaction signs.
+
+
 ## Labels and cell types
 
 As the state of the network is updated using the functions, the network will reach a previously visited state called an attractor. Attractors can be steady states or cycles. The set of states that lead to an attractor is called the basin of the attractor. Attractors represent cell types or  biological processes. The function `attractorToDataframe()` allows us to see the attractor as a dataframe
@@ -227,19 +230,24 @@ cellfate <- cellFateMap(netTh17Treg, label.rules = labelsTh17Treg)
 head(cellfate)
 ```
 
+### Derrida curves
+
+Derrida curves are used to determine the dynamic behaviour of Boolean networks. We take two states with Hamming distance $h$ in the time $t$, and determine the hamming distance in time $t+1$. This process is repeated. If the network is chaotic, the curve tends to be over the diagonal. If the network is ordered it will be below the diagonal.
+
+```{r}
+res.der <- derrida(netTh17Treg)
+plot(x=names(res.der), y=res.der, 
+     ylim = c(0,length(res.der)), 
+     xlab = "h_t", ylab = "h_t+1")
+abline(0,1)
+```
+
+
 ## Connect to other packages
 
-### BoolNet
-
-
-### Other
-
-It is possible to plot the network topology dataframe with the R package `igraph`. This dataframe can also be used to import and export the network topology to other resources like the python library `networkx` or to the software `Cytoscape`.
-
+The library `BoolNetPerturb` was conceived as an extension of `Boolnet`. 
+It is possible to plot the network topology and other dataframes with the R package `igraph`. This dataframe can also be used to import and export to other resources like the python library `networkx` or to the software `Cytoscape`.
 It is possible to export the network functions as an SBML file using the `BoolNet` function `toSBML()`.
-
-
-
 
 
 ## References
