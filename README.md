@@ -7,12 +7,9 @@ For the old version of boolnet go to https://github.com/mar-esther23/boolnet-per
 ## Installation
 Using [devtools](https://github.com/hadley/devtools) in R:
 ```
-install.packages("devtools")
 library(devtools)
 install_github("mar-esther23/boolnet-perturb")
 ```
-
-You can see the [tutorials in github](https://github.com/mar-esther23/boolnet-perturb/tutorials). To run them you need [Jupyter](http://jupyter.readthedocs.org/en/latest/install.html) and the [Rkernel](http://irkernel.github.io/installation/).
 
 --------------------------------------------
 
