@@ -15,12 +15,12 @@
 #'
 #' @examples
 #' attr <- getAttractors(cellcycle)
-#' attractor2dataframe(attr)
+#' attractorToDataframe(attr)
 #' #              involvedStates basinSize
 #' #1                        162       512
 #' #2 25/785/849/449/389/141/157       512
 #' 
-#' attractor2dataframe(attr, Boolean=TRUE)
+#' attractorToDataframe(attr, Boolean=TRUE)
 #' #   attractor state CycD Rb E2F CycE CycA p27 Cdc20 Cdh1 UbcH10 CycB
 #' #1         1     1    0  1   0    0    0   1     0    1      0    0
 #' #2         2     1    1  0   0    1    1   0     0    0      0    0
@@ -30,7 +30,9 @@
 #' #6         2     5    1  0   1    0    0   0     0    1      1    0
 #' #7         2     6    1  0   1    1    0   0     0    1      0    0
 #' #8         2     7    1  0   1    1    1   0     0    1      0    0
-attractor2dataframe <- function(attr, sep="/", node.names=NULL, Boolean=FALSE) {
+#' 
+#' @export
+attractorToDataframe <- function(attr, sep="/", node.names=NULL, Boolean=FALSE) {
     if (Boolean) {
           if (is(attr, "AttractorInfo")) {
         if (is.null(node.names)) node.names <- attr$stateInfo$genes
@@ -86,18 +88,22 @@ attractor2dataframe <- function(attr, sep="/", node.names=NULL, Boolean=FALSE) {
 #' @param returnDataFrame if returnDataFrame='occurrence' returns a df where each column corresponds to a network and the rows to the attractor/label or labels. The values indicate the frequency of the attractor/label
 #' if returnDataFrame='basinSize' returns a df where the values indicate the basin size of the attractor/label
 #' if returnDataFrame='attrList' returns a list of AttractorInfo objects
+#' 
 #' @return Dataframe, each column corresponds to a property of the attractor
-#' @export
+#' 
 #' @examples
 #' data(cellcycle)
 #' attrs <- list(getAttractors(cellcycle))
-#' attractors2dataframe(attrs)
-attractors2dataframe <- function(attr.list, sep='/', returnDataFrame=c('occurrence','basinSize'), ...) {
+#' attractorsToDataframe(attrs)
+#' 
+#' @keywords internal
+#' @export
+attractorsToDataframe <- function(attr.list, sep='/', returnDataFrame=c('occurrence','basinSize'), ...) {
   # Receives a list of BoolNet attractors and return a dataframe
   # Each column is named attrName.propertyName
   returnDataFrame <- match.arg(returnDataFrame)
   # Transform from attr to dataframe
-  attr.list <- lapply(attr.list, attractor2dataframe, sep)
+  attr.list <- lapply(attr.list, attractorToDataframe, sep)
   # Verify names exist
   if ( is.null(names(attr.list)) ) names(attr.list) <- 1:length(attr.list)
   # set involvedStates as rowname, delete and rename df columns 
@@ -123,16 +129,20 @@ attractors2dataframe <- function(attr.list, sep='/', returnDataFrame=c('occurren
 #' 
 #' Convert a data frame with nodes displayed in Boolean format to a BoolNet attractor. First column is the attractor number, second is the number of state inside the attractor, the rest of the columns correspond to each node.
 #'
-#' @param Dataframe, see\code{\link{attractor2dataframe}} each column corresponds to the number of attractor, state, or node
+#' @param Dataframe, see\code{\link{attractorToDataframe}} each column corresponds to the number of attractor, state, or node
 #' @param fixedGenes fixedGenes of network
+#' 
 #' @return attr BoolNet attractor object
-#' @export
+#' 
 #' @examples
 #' > data("cellcycle")
 #' > attr <- getAttractors(cellcycle)
-#' > attr.df <- attractor2dataframe(attr)
-#' > print(dataframe2attractor(attr.df))
-dataframe2attractor <- function(df, fixedGenes) {
+#' > attr.df <- attractorToDataframe(attr)
+#' > print(dataframeToAttractor(attr.df))
+#' 
+#' @keywords internal
+#' @export
+dataframeToAttractor <- function(df, fixedGenes) {
   bin2intState <- function(x){ 
     x <- rev(x)
     sum(2^(which(rev(unlist(strsplit(as.character(x), "")) == 1))-1))
@@ -175,7 +185,10 @@ dataframe2attractor <- function(df, fixedGenes) {
 #' @param node.names node names of the state, the length must be the same that the state's
 #' @param label.rules dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names
 #' @param sep string to join elements with length > 1, default "/"
+#' 
 #' @return Dataframe, each row corresponds to a label and each column corresponds to a property of the original dataframe 
+#' 
+#' @keywords internal
 #' @export
 aggregateByLabel <- function(df, node.names, label.rules, sep='/') {
   labels <- lapply(rownames(df), function(state) {
@@ -200,8 +213,9 @@ aggregateByLabel <- function(df, node.names, label.rules, sep='/') {
 #'
 #' @param df dataframe with numeric values
 #' @param reference name of column to use as reference
+#' 
 #' @return axis, axis to obtain new/lost values, see \code{\link[base]{sum}}
-#' @export
+#' 
 #' @examples
 #' df <- data.frame(WT=c(1,2,0,0), a=c(1,2,0,0), 
 #'                  b=c(0,2,1,0), c=c(1,0,3,1))
@@ -213,7 +227,9 @@ aggregateByLabel <- function(df, node.names, label.rules, sep='/') {
 #' #     	WT	    a	b	c
 #' #     	new	    0	0	2	1
 #' #     	lost	1	1	0	0
-
+#' 
+#' @keywords internal
+#' @export
 countChangesDataframe <- function(df, reference='WT', axis=2) {
     df <- df/df
     df[is.na(df)] <- 0

@@ -35,6 +35,7 @@ dataframe or list of attractors of the perturbed networks
 Simulates fixed function perturbations (knock-out and over-expression) in a network. Takes a network, a list of gene names and corresponding values to perturb, fixes those values in each network and returns the corresponding attractors for all perturbed networks. By default it  returns all the single node knock-out and over-expression of a network.
 }
 \examples{
+data(cellcycle)
 # All single gene knock-out and over-expression of cellcycle network
 perturbNetworkFixedNodes(cellcycle)
 
@@ -51,5 +52,5 @@ perturbNetworkFixedNodes(  net=cellcycle, genes=double.KO,
                         value=as.list(rep(0, number.double.KO))  ) 
 }
 \seealso{
-\code{\link{fixGenes}} \code{\link{attractors2dataframe}}
+\code{\link{fixGenes}} \code{\link{attractorsToDataframe}}
 }

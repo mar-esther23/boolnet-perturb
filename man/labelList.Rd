@@ -9,3 +9,4 @@ labelList(states, label.rules, node.names = NULL, sep = "/")
 \description{
 Label state list from dataframe column
 }
+\keyword{internal}

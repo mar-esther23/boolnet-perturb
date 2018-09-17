@@ -15,6 +15,7 @@ getInteractionSign(source, target, net)
 }
 \value{
 interaction str interaction type between source and target
+Get sign of interaction
 }
 \description{
 Returns a dataframe with the following interaction types:
@@ -24,3 +25,4 @@ Returns a dataframe with the following interaction types:
     'NR' : No regulation
     NULL : No interaction
 }
+\keyword{internal}

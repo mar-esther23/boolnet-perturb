@@ -21,3 +21,4 @@ Dataframe, each row corresponds to a label and each column corresponds to a prop
 \description{
 Takes a dataframe where the rownames are states in integer format (cycles are strings joined with sep). The function labels the states and agregates the dataframe using label. Agregate splits the data into subsets by label, computes summary statistics for each, and returns the result in a convenient form. See   \code{\link[stats]{aggregate}}
 }
+\keyword{internal}

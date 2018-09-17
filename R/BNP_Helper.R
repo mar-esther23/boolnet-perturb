@@ -6,15 +6,20 @@
 #' '
 #' @param x input integer representing the state
 #' @param node.names network node names
+#' 
 #' @return Numeric binary vector of the same length as the number of nodes. Each 
 #'     position corresponds to a node of the network. The values of each element 
 #'     are 0 or 1. The name of each element corresponds to the name of the node in
 #'     that position in the network.
+#'     
 #' @seealso \code{\link{intToBits}} which this function wraps
-#' @export
+#' 
 #' @examples
 #' data(cellcycle)
 #' int2binState(162,cellcycle$genes)
+#' 
+#' @keywords internal
+#' @export
 int2binState <- function(x, node.names){ 
     state <- as.integer( intToBits(x)[1:length(node.names)] )  
     names(state) <- node.names
@@ -24,11 +29,16 @@ int2binState <- function(x, node.names){
 #' Convert binart state vector to integer.
 #' '
 #' @param x input vector representing the state
+#' 
 #' @return Corresponding int.
+#' 
 #' @seealso \code{\link{intToBits}} which this function wraps
-#' @export
+#' 
 #' @examples
 #' bin2intState( c(0,1,0,0,0,1,0,1,0,0) )
+#' 
+#' @keywords internal
+#' @export
 bin2intState <- function(x){ 
   x <- rev(x)
   sum(2^(which(rev(unlist(strsplit(as.character(x), "")) == 1))-1))
@@ -38,16 +48,21 @@ bin2intState <- function(x){
 #' 
 #' @param x input integer representing the state, can be a vector of 0/1 or an int
 #' @param node.names network node names
+#' 
 #' @return Numeric binary vector of the same length as the number of nodes. Each 
 #'     position corresponds to a node of the network. The values of each element 
 #'     are 0 or 1. The name of each element corresponds to the name of the node in
 #'     that position in the network.
+#'     
 #' @seealso \code{\link{intToBits}} which this function wraps
-#' @export
+#' 
 #' @examples
 #' validateState(162, cellcycle$genes)
 #' validateState('162', cellcycle$genes)
 #' validateState(c(0,1,0,0,0,1,0,1,0,0), cellcycle$genes)
+#' 
+#' @keywords internal
+#' @export
 validateState <- function(x, node.names) {
   if (is.character(x)) { #convert valid strings integers
     tryCatch({ x <- as.integer(x) }, 
@@ -66,10 +81,14 @@ validateState <- function(x, node.names) {
 #'
 #' @param gene node to asses
 #' @param net BoolNet network 
+#' 
 #' @return Boolean is the node an input in the network.
-#' @export
+#' 
 #' @examples
 #' isGeneInput("CycD", cellcycle)
+#' 
+#' @keywords internal
+#' @export
 isGeneInput <- function(gene, net) {
     if ( 
         all((which( net$genes == gene )) == net$interactions[[gene]]$input)

@@ -12,9 +12,11 @@
 #' @param label.rules dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names
 #' @param sep string to separate the labels when more than one can be applied to the state.
 #' @return String corresponding to the label of the state.
-#' @export
+#' 
 #' @examples
 #' labelState(state, net$genes, label.rules, sep='')
+#' 
+#' @export
 labelState <- function(state, node.names, label.rules, sep='') {
     labels <- label.rules[[1]]
     rules  <- label.rules[[2]]
@@ -43,10 +45,12 @@ labelState <- function(state, node.names, label.rules, sep='') {
 #'        if string it will paste the states of a cicle with sep
 #' @return List of strings corresponding to the label of the attractor, if an attractor has multiple states it will return a list of strings for that state.
 #' @seealso \code{\link{labelState}} which this function wraps
-#' @export
+#' 
 #' @examples
 #' attr <- getAttractors(net$genes)
 #' labelAttractors(attr, net$genes, labels, rules, sep='')
+#' 
+#' @export
 labelAttractors <- function(attr, label.rules, node.names=NULL, sep="/") {
   # takes an attractors object created by BoolNet
   # returns a list of the labels for each attractor in order.
@@ -67,6 +71,9 @@ labelAttractors <- function(attr, label.rules, node.names=NULL, sep="/") {
 
 
 #' Label state list from dataframe column 
+#' 
+#' @keywords internal
+#' @export
 labelList <- function(states, label.rules, node.names=NULL, sep='/') {
     labels <- sapply(unlist(states), function(state) {
         state <- strsplit(as.character(state), sep)

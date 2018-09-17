@@ -19,7 +19,9 @@ Convert binart state vector to integer.
 }
 \examples{
 bin2intState( c(0,1,0,0,0,1,0,1,0,0) )
+
 }
 \seealso{
 \code{\link{intToBits}} which this function wraps
 }
+\keyword{internal}

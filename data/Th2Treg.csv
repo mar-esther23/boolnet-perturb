@@ -1,9 +1,0 @@
-targets, functions
-FOXP3, IL2 & (TGFB | FOXP3) & !IL4
-TGFB,  (TGFBe | TGFB | FOXP3)
-IL2,   (IL2e | (IL2 & !FOXP3)) 
-IL4,   (IL4e | (GATA3 & (IL2 | IL4)))
-GATA3, ((IL2 & IL4) | IL4 | GATA3) & !TGFB
-TGFBe, TGFBe
-IL2e,  IL2e
-IL4e,  IL4e

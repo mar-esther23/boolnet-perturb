@@ -24,4 +24,5 @@ The elements of the state correspond the network node names. If a rule is satisf
 }
 \examples{
 labelState(state, net$genes, label.rules, sep='')
+
 }

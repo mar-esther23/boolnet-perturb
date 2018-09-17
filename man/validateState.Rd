@@ -24,7 +24,9 @@ Validate and convert a number to a valid state.
 validateState(162, cellcycle$genes)
 validateState('162', cellcycle$genes)
 validateState(c(0,1,0,0,0,1,0,1,0,0), cellcycle$genes)
+
 }
 \seealso{
 \code{\link{intToBits}} which this function wraps
 }
+\keyword{internal}

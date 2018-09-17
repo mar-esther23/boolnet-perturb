@@ -25,7 +25,9 @@ Convert integer to binary state vector with node names.
 \examples{
 data(cellcycle)
 int2binState(162,cellcycle$genes)
+
 }
 \seealso{
 \code{\link{intToBits}} which this function wraps
 }
+\keyword{internal}

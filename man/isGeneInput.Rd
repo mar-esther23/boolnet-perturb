@@ -19,4 +19,6 @@ Determine if a node is an input of the network.
 }
 \examples{
 isGeneInput("CycD", cellcycle)
+
 }
+\keyword{internal}

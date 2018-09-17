@@ -28,4 +28,6 @@ countChangesDataframe(df, axis=1)
 #     	WT	    a	b	c
 #     	new	    0	0	2	1
 #     	lost	1	1	0	0
+
 }
+\keyword{internal}

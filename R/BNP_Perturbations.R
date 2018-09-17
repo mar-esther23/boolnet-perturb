@@ -18,9 +18,10 @@
 #' @param sep string to join states in cyclic attractors, default "/"
 #' @param ... Further parameters to getAttractors.
 #' @return dataframe or list of attractors of the perturbed networks
-#' @seealso \code{\link{fixGenes}} \code{\link{attractors2dataframe}} 
+#' @seealso \code{\link{fixGenes}} \code{\link{attractorsToDataframe}} 
 #' @export
 #' @examples
+#' data(cellcycle)
 #' # All single gene knock-out and over-expression of cellcycle network
 #' perturbNetworkFixedNodes(cellcycle)
 #' 
@@ -72,7 +73,7 @@ perturbNetworkFixedNodes <- function(net, genes, values=0, names,
   names(mutants) <- names
   # convert attractors to dataframe
   if (returnDataFrame!='attrList') {
-    mutants <- attractors2dataframe(mutants, sep=sep, returnDataFrame=returnDataFrame)
+    mutants <- attractorsToDataframe(mutants, sep=sep, returnDataFrame=returnDataFrame)
     if (!is.null(label.rules)) mutants <- aggregateByLabel(mutants, net$genes, label.rules, sep=sep)
   }
   mutants
@@ -99,7 +100,7 @@ verifySyncronousVsAsyncronous <- function(net, attr, label.rules=NULL, ...) {
     if (missing(attr)) attr <- getAttractors(net,type = 'sync')
     if (!is(attr, "AttractorInfo")) { stop("Error: non-valid attractor") }
     # convert attr to list of vectors for getAttractors
-    l <- attractor2dataframe(attr, Boolean=T)
+    l <- attractorToDataframe(attr, Boolean=T)
     l["attractor"] <- NULL
     l["state"] <- NULL
     l <- simplify2array(l)
@@ -107,8 +108,8 @@ verifySyncronousVsAsyncronous <- function(net, attr, label.rules=NULL, ...) {
     attr.async <- getAttractors(net,type='async', 
                                 method="chosen",startStates=l, ...)
     if (is.null(label.rules)) {
-        attr <- attractor2dataframe(attr)$involvedStates
-        attr.async <- attractor2dataframe(attr.async)$involvedStates
+        attr <- attractorToDataframe(attr)$involvedStates
+        attr.async <- attractorToDataframe(attr.async)$involvedStates
     } else {
         attr <- labelAttractors(attr, label.rules)
         attr.async <- labelAttractors(attr.async, label.rules)
@@ -281,7 +282,7 @@ cellFateMap <- function(net,states,genes,time=1, label.rules, ...) {
     if (!is(net, "BooleanNetwork")) { stop("Error: non-valid network") }
     if (missing(states)) { #run for all attractors
         states <- getAttractors(net, method="sat.exhaustive")
-        states <- attractor2dataframe(states, Boolean=T)
+        states <- attractorToDataframe(states, Boolean=T)
         states["attractor"] <-NULL
         states["state"] <- NULL
     }
@@ -304,4 +305,28 @@ cellFateMap <- function(net,states,genes,time=1, label.rules, ...) {
     }
     
     return(res)
+}
+
+
+derrida <- function(net, repetitions=1000) {
+  #states <- getAttractors(net, method="sat.exhaustive")
+  repetitions = round(repetitions/length(net$genes))
+  res = 1:length(net$genes)
+  for (nodes.to.perturb in res) { 
+    for (n in 1:repetitions) {
+      state <- sample.int(2^length(net$genes),1) #random initial state
+      state <- validateState(state, net$genes)
+      genes <- sample(net$genes,nodes.to.perturb) #random nodes to perturb
+      
+      attr.ori <- getAttractors(net,startStates = list(state) )
+      attr.ori <- attr.ori$attractors[[1]]$involvedStates
+      attr.per <- perturbState(net,state,genes)
+      attr.per <- attr.per$attractors[[1]]$involvedStates
+      
+      hamming <- bitwXor(attr.ori,attr.per)
+      hamming <- sum(as.integer(intToBits(hamming)))
+      hamming
+    }
+    
+  }
 }

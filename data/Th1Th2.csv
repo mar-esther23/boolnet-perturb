@@ -1,9 +1,0 @@
-targets, functions
-TBET,  ((IFNG | TBET) & !IL4 & !GATA3
-IFNG,  (IFNGe | ((IFNG | TBET) & !GATA3)) & !IL4
-IL2,   (IL2e | IL2) & !IFNG
-IL4,   (IL4e | (GATA3 & (IL2 | IL4) & !TBET)) & !IFNG
-GATA3, ((IL2 & IL4) | IL4 | GATA3) & !TBET & !IFNG
-IFNGe, IFNGe
-IL2e,  IL2e
-IL4e,  IL4e

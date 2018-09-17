@@ -24,6 +24,7 @@ Returns a list of labels for a the involved states in a BoolNet attractor object
 \examples{
 attr <- getAttractors(net$genes)
 labelAttractors(attr, net$genes, labels, rules, sep='')
+
 }
 \seealso{
 \code{\link{labelState}} which this function wraps

@@ -50,6 +50,11 @@ getNetTopology <- function(net) {
 #' @param net BoolNet function  
 #' @return interaction str interaction type between source and target
 
+
+#' Get sign of interaction
+#' 
+#' @keywords internal
+#' @export
 getInteractionSign <-  function(source, target, net) {
   if (! source %in% net$genes) stop(paste(source, "is not in network"))
   if (! target %in% net$genes) stop(paste(target, "is not in network"))
