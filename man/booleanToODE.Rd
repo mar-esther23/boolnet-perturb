@@ -24,7 +24,7 @@ describe the rate of change for the nodes in the network.}
 \item{keep.input}{if TRUE set the derivate of the inputs to 0}
 }
 \value{
-Returns a list with func (ode function), state, and parameters.
+Returns a list with func (ode function), parameters and example state and time.
         The parameters are a vector where h=10, w=0.5 and decay rate = 1.
 }
 \description{
@@ -35,11 +35,13 @@ The function translate the Boolean Network to a Determinist Continuous Network
 IMPORTANT: This function call the perl script "ConvertTocontinuos.pl".
 }
 \examples{
+library(deSolve)
 data(cellcycle)
+
 net.ode <- booleanToODE(cellcycle)
 ode(func = net.ode$func, 
-    y = net.ode$state, 
     parms = net.ode$parameters, 
+    y = net.ode$state, 
     times = seq(0, 5, 0.1))
 
 }

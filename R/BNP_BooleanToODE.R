@@ -27,7 +27,9 @@
 #'         The parameters are a vector where h=10, w=0.5 and decay rate = 1.
 #' 
 #' @examples
+#' library(deSolve)
 #' data(cellcycle)
+#' 
 #' net.ode <- booleanToODE(cellcycle)
 #' ode(func = net.ode$func, 
 #'     parms = net.ode$parameters, 

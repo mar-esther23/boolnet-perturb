@@ -88,3 +88,13 @@ plot(x=names(res.der), y=res.der,
      xlab = "h_t", ylab = "h_t+1")
 abline(0,1)
 
+## ----  fig.widht = 4-----------------------------------------------------
+library(deSolve)
+net.ode <- booleanToODE(netTh17Treg, keep.input = TRUE)
+state <- validateState(c(0,0,0,0,0,1,0,1), netTh17Treg$genes)
+out <- ode(func = net.ode$func, 
+     parms = net.ode$parameters, 
+     y = state, 
+     times = seq(0, 5, 0.1))
+matplot(out, type="l", ylab="value", main="Th17/Treg net")
+

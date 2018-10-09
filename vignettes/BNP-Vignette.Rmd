@@ -249,5 +249,19 @@ The library `BoolNetPerturb` was conceived as an extension of `Boolnet`.
 It is possible to plot the network topology and other dataframes with the R package `igraph`. This dataframe can also be used to import and export to other resources like the python library `networkx` or to the software `Cytoscape`.
 It is possible to export the network functions as an SBML file using the `BoolNet` function `toSBML()`.
 
+### Boolean to ODE networks
+
+It is possible to translate a Boolean network to a ODE network using logistic functions (see refs). The function `booleanToODE()` translate a BoolNet network to an ODE model using Zadeh or probabilistic logic and  the equation proposed by Sanchez-Corrales et al., 2010 or Villarreal et al., 2012. This process can also be used to verify that the model is robust to a translation to a continuous system. 
+
+```{r,  fig.widht = 4}
+library(deSolve)
+net.ode <- booleanToODE(netTh17Treg, keep.input = TRUE)
+state <- validateState(c(0,0,0,0,0,1,0,1), netTh17Treg$genes)
+out <- ode(func = net.ode$func, 
+     parms = net.ode$parameters, 
+     y = state, 
+     times = seq(0, 5, 0.1))
+matplot(out, type="l", ylab="value", main="Th17/Treg net")
+```
 
 ## References
