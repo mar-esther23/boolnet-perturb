@@ -1,19 +1,20 @@
 Package: BoolNetPerturb
 Title: Perturb Boolean Networks
 Version: 0.2
-Authors@R: person("ME", "Martinez-Sanchez", 
-    email = "mar.esther23@gmail.com", 
-    role = c("aut", "cre"))
+Authors@R: c(person(
+    "ME", "Martinez-Sanchez", email = "mariana.martinez@c3.unam.mx", role = c("aut", "cre")),
+    person("JA", "Arias Del Angel", role = c("aut")) )
 Description: The BoolNetPerturb package adds functions to BoolNet for
     perturbing Boolean Regulatory Networks. This functions can be used
     for the study of biological systems. This package is capable of
-    labeling states, simulating multiple knock-outs and over-expressions
-    and simulating fixed and transient perturbations in the states and
-    trajectory of a network. See the Jupyter Tutorials for more examples.
+    labeling states, simulating multiple knock-outs and over-expressions,
+    simulating fixed and transient perturbations in the states and
+    trajectory of a network, and converting to a continuous ODE system.
 Depends:
     R (>= 3.1.0),
     BoolNet (>= 2.1.1)
 Suggests: testthat
+SystemRequirements: Perl (>=5)
 License: MIT
 Encoding: UTF-8
 LazyData: true
