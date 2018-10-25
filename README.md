@@ -9,6 +9,7 @@ Using [devtools](https://github.com/hadley/devtools) in R:
 ```
 library(devtools)
 install_github("mar-esther23/boolnet-perturb")
+library(BoolNetPerturb)
 ```
 
 --------------------------------------------
