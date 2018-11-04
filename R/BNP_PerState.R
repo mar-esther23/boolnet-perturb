@@ -83,7 +83,9 @@ perturbState <- function(net, state, genes, time=1, result=c('attractor','nextSt
     }
     # recover original network and inputs
     net <- fixGenes(net, genes, -1) 
-    initial.state <- setStateValues(initial.state, inputs, inputs.values) 
+    if (length(inputs)>0) {
+      initial.state <- setStateValues(initial.state, inputs, inputs.values)
+    }
   } else { # if fixed perturbation
     # apply perturbation
     net <- fixGenes(net, genes, values) 
@@ -136,7 +138,7 @@ perturbState <- function(net, state, genes, time=1, result=c('attractor','nextSt
 #' Runs all perturbations of time N for all states and all genes, returns a dataframe with initial states, final attractor, pertubed gene and value. See \code{\link{perturbState}}
 #'
 #' @param net BoolNet network to perturb
-#' @param states state to perturb, default is all attractors.
+#' @param dataframe of states state to perturb, default is all attractors.
 #' @param genes genes to perturb, default is all genes.
 #' @param values value of perturbed genes, default is bitflip of target genes.
 #' @param time time of perturbation, default is 1. If time=NULL the perturbation will be fixed permanently, if time=n the perturbation will last n time steps and then the rules will return to their original values.
