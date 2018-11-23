@@ -22,5 +22,7 @@ Interactions types can be:
     'NR' : Non-functional regulation
 }
 \examples{
+data(cellcycle)
 getNetTopology(cellcycle)
+
 }

@@ -42,7 +42,7 @@ labelState <- function(state, node.names, label.rules, sep='') {
 #' @param label.rules dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names
 #' @param sep string to separate the labels when more than one can be applied to the state, 
 #'        if NULL it will return the label of each state in a cycle separately
-#'        if string it will paste the states of a cicle with sep
+#'        if string it will paste the states of a cycle with sep
 #' @return List of strings corresponding to the label of the attractor, if an attractor has multiple states it will return a list of strings for that state.
 #' @seealso \code{\link{labelState}} which this function wraps
 #' 

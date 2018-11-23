@@ -6,7 +6,7 @@
 \usage{
 perturbNetworkFixedNodes(net, genes, values = 0, names,
   returnDataFrame = c("occurrence", "basinSize", "attrList"),
-  label.rules = NULL, sep = "/", ...)
+  label.rules = NULL, sep = "/", verbose = FALSE, ...)
 }
 \arguments{
 \item{net}{network to perturb}
@@ -25,6 +25,8 @@ if returnDataFrame='attrList' returns a list of AttractorInfo objects}
 if label.rules is a dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names}
 
 \item{sep}{string to join states in cyclic attractors, default "/"}
+
+\item{verbose}{report the node being perturbed, useful for larger networks}
 
 \item{...}{Further parameters to getAttractors.}
 }

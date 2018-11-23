@@ -14,8 +14,12 @@
 #' 
 #' @param net BoolNet function
 #' @return df.graph dataframe with source and target nodes and the type of interactions
+#' 
 #' @examples
+#' data(cellcycle)
 #' getNetTopology(cellcycle)
+#' 
+#' @export
 getNetTopology <- function(net) {
   if (!is(net, "BooleanNetwork")) { stop("Error: non-valid network") }
   df <- data.frame(matrix(vector(), 0, 3,

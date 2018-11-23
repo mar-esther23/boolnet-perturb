@@ -12,6 +12,7 @@
 #' @param label.rules if label.rules=NULL (default) returns a df with the attractors as rows
 #'   if label.rules is a dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names
 #' @param sep string to join states in cyclic attractors, default "/"
+#' @param verbose report the node being perturbed, useful for larger networks
 #' @param ... Further parameters to getAttractors.
 #' @return dataframe or list of attractors of the perturbed networks
 #' @seealso \code{\link{fixGenes}} \code{\link{attractorsToDataframe}} 
@@ -34,7 +35,7 @@
 #'                         value=as.list(rep(0, number.double.KO))  ) 
 perturbNetworkFixedNodes <- function(net, genes, values=0, names, 
                                      returnDataFrame=c('occurrence','basinSize','attrList'),
-                                     label.rules=NULL, sep='/', ...) {
+                                     label.rules=NULL, sep='/', verbose=FALSE, ...) {
   if (!is(net, "BooleanNetwork")) { stop("Error: non-valid network") }
   returnDataFrame <- match.arg(returnDataFrame)
   # generate genes to evaluate
@@ -59,7 +60,7 @@ perturbNetworkFixedNodes <- function(net, genes, values=0, names,
   # Calculate mutants
   mutants <- list()
   for (i in 1:length(genes)) {
-    #print( unlist(c(i,names[i],genes[i],values[i])) )
+    if (verbose) print( unlist(c(i,names[i],genes[i],values[i])) )
     not.WT <- ! (is.null(genes[i]) || is.na(genes[i]))
     #         print(not.WT)
     if ( not.WT ) { net <- fixGenes(net, unlist(genes[i]), unlist(values[i])) }

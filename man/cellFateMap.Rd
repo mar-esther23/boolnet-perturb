@@ -9,13 +9,13 @@ cellFateMap(net, states, genes, time = 1, label.rules, ...)
 \arguments{
 \item{net}{BoolNet network to perturb}
 
-\item{states}{state to perturb, default is all attractors.}
-
 \item{genes}{genes to perturb, default is all genes.}
 
 \item{time}{time of perturbation, default is 1. If time=NULL the perturbation will be fixed permanently, if time=n the perturbation will last n time steps and then the rules will return to their original values.}
 
 \item{label.rules}{dataframe with labels (1st col) and rules (2nd col), if more than one rule is true all labels are appendedl the node names present in the rules must be in node.names}
+
+\item{dataframe}{of states state to perturb, default is all attractors.}
 
 \item{values}{value of perturbed genes, default is bitflip of target genes.}
 }

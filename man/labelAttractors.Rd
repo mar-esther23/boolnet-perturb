@@ -13,7 +13,7 @@ labelAttractors(attr, label.rules, node.names = NULL, sep = "/")
 
 \item{sep}{string to separate the labels when more than one can be applied to the state, 
 if NULL it will return the label of each state in a cycle separately
-if string it will paste the states of a cicle with sep}
+if string it will paste the states of a cycle with sep}
 }
 \value{
 List of strings corresponding to the label of the attractor, if an attractor has multiple states it will return a list of strings for that state.
