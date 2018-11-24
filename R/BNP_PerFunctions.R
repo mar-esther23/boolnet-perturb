@@ -15,7 +15,7 @@
 #' @param verbose report the node being perturbed, useful for larger networks
 #' @param ... Further parameters to getAttractors.
 #' @return dataframe or list of attractors of the perturbed networks
-#' @seealso \code{\link{fixGenes}} \code{\link{attractorsToDataframe}} 
+#' @seealso \code{\link{fixGenes}} \code{\link{attractorListToDataframe}} 
 #' @export
 #' @examples
 #' data(cellcycle)
@@ -70,7 +70,7 @@ perturbNetworkFixedNodes <- function(net, genes, values=0, names,
   names(mutants) <- names
   # convert attractors to dataframe
   if (returnDataFrame!='attrList') {
-    mutants <- attractorsToDataframe(mutants, sep=sep, returnDataFrame=returnDataFrame)
+    mutants <- attractorListToDataframe(mutants, sep=sep, returnDataFrame=returnDataFrame)
     if (!is.null(label.rules)) mutants <- aggregateByLabel(mutants, net$genes, label.rules, sep=sep)
   }
   mutants

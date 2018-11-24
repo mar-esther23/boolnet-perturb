@@ -54,5 +54,5 @@ perturbNetworkFixedNodes(  net=cellcycle, genes=double.KO,
                         value=as.list(rep(0, number.double.KO))  ) 
 }
 \seealso{
-\code{\link{fixGenes}} \code{\link{attractorsToDataframe}}
+\code{\link{fixGenes}} \code{\link{attractorListToDataframe}}
 }

@@ -94,11 +94,10 @@ attractorToDataframe <- function(attr, sep="/", node.names=NULL, Boolean=FALSE) 
 #' @examples
 #' data(cellcycle)
 #' attrs <- list(getAttractors(cellcycle))
-#' attractorsToDataframe(attrs)
+#' attractorListToDataframe(attrs)
 #' 
 #' @keywords internal
-#' @export
-attractorsToDataframe <- function(attr.list, sep='/', returnDataFrame=c('occurrence','basinSize'), ...) {
+attractorListToDataframe <- function(attr.list, sep='/', returnDataFrame=c('occurrence','basinSize'), ...) {
   # Receives a list of BoolNet attractors and return a dataframe
   # Each column is named attrName.propertyName
   returnDataFrame <- match.arg(returnDataFrame)

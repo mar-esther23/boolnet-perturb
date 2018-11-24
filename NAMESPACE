@@ -2,7 +2,6 @@
 
 export(aggregateByLabel)
 export(attractorToDataframe)
-export(attractorsToDataframe)
 export(bin2intState)
 export(booleanToODE)
 export(cellFateMap)
