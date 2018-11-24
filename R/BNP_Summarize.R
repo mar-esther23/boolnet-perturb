@@ -36,12 +36,12 @@ summarizeAttractors <- function(attr, genes=NULL, net=NULL, returnBasin=F) {
         genes <- sapply(net$genes, isGeneInput, net)
         genes <- net$genes[genes]
     }
+    # Create dataframe
+    df <- attractorToDataframe(attr, Boolean = T)
     if (returnBasin) {
       remove <- c("attractor","state","basinSize",genes) 
       } else remove <- c("attractor","state",genes) 
     group.genes <- colnames(df)[!colnames(df) %in% remove]
-    # Create dataframe
-    # df <- attractorToDataframe(attr, Boolean = T)
     # Obtain basins
     if (returnBasin) {
         df[,"basinSize"] <- NA
