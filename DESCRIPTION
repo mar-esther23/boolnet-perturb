@@ -12,7 +12,8 @@ Description: The BoolNetPerturb package adds functions to BoolNet for
     trajectory of a network, and converting to a continuous ODE system.
 Depends:
     R (>= 3.1.0),
-    BoolNet (>= 2.1.1)
+    BoolNet (>= 2.1.1),
+    dplyr
 Suggests: testthat, deSolve
 SystemRequirements: Perl (>=5)
 License: MIT
