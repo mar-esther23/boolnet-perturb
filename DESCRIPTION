@@ -13,7 +13,8 @@ Description: The BoolNetPerturb package adds functions to BoolNet for
 Depends:
     R (>= 3.1.0),
     BoolNet (>= 2.1.1),
-    dplyr
+    dplyr,
+    reshape2
 Suggests: testthat, deSolve
 SystemRequirements: Perl (>=5)
 License: MIT
