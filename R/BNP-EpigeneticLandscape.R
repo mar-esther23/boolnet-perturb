@@ -3,7 +3,7 @@
 #library(reshape2)
 
 
-#' Calculate the epigenetic landscape of a network
+#' Calculate the epigenetic landscape of a network.
 #' 
 #' ...
 #'  
@@ -53,6 +53,7 @@ epigeneticLandscape = function(net, p = 0.01, returnDataFrame = F){
   basin = attr$stateInfo$attractorAssignment
   # Associate the S(t+1) states to its respective attractor basin.
   t.plus.basin = basin[t.plus + 1]
+  print(t.plus.basin)
   
   data = data.frame(t.plus = t.plus, t = t, prob = kin*prob, BasinOUT = t.plus.basin, BasinIN = t.basin)
   subset(data, data$BasinOUT == 1 & data$BasinIN == 1)
@@ -72,4 +73,12 @@ epigeneticLandscape = function(net, p = 0.01, returnDataFrame = F){
     data = data[,-1]
   }
   return(data)
+}
+
+epigeneticLandscapeLabels <-  function(attr, label.rules=NULL, sep="/") {
+  dec <- sapply(attr$attractors, function(x) {paste(x$involvedStates, collapse=sep)})
+  if (is.null(label.rules)) return(dec)
+  labels <- labelAttractors(attr, label.rules)
+  labels <- paste0(labels,"(",dec,")")
+  return(labels)
 }
