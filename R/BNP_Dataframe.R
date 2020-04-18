@@ -59,6 +59,12 @@ attractorToDataframe <- function(attr, sep="/", node.names=NULL, Boolean=FALSE) 
         attr <- attr$attractors
         # create properties list, if labeled we will have more
         attr.properties <- vector("list", length(attr[[(1)]]))
+        # fix for async where all basinSize is NA
+        if (n=="basinSize") {
+          if (   all(is.na(attr.properties[[n]]))   ) {
+            attr.properties[[n]][is.na(attr.properties[[n]])] <- 1    
+            }
+          }
         names(attr.properties) <- names(attr[[(1)]])
         #print(attr.properties)
 
